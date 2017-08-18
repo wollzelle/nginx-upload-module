@@ -1206,6 +1206,8 @@ static ngx_int_t ngx_http_upload_start_handler(ngx_http_upload_ctx_t *u) { /* {{
     ngx_uint_t  pass_field;
     ngx_upload_cleanup_t  *ucln;
 
+    ngx_log_debug0(NGX_LOG_DEBUG_CORE, file->log, 0, "ngx_http_upload_start_handler");
+
     if(u->is_file) {
         u->ordinal++;
 
