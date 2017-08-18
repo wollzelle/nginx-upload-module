@@ -1206,6 +1206,7 @@ static ngx_int_t ngx_http_upload_start_handler(ngx_http_upload_ctx_t *u) { /* {{
     ngx_uint_t  pass_field;
     ngx_upload_cleanup_t  *ucln;
 
+    file->log = r->connection->log;
     ngx_log_debug0(NGX_LOG_DEBUG_CORE, file->log, 0, "ngx_http_upload_start_handler");
 
     if(u->is_file) {
@@ -1224,8 +1225,6 @@ static ngx_int_t ngx_http_upload_start_handler(ngx_http_upload_ctx_t *u) { /* {{
             return NGX_UPLOAD_NOMEM;
 
         ngx_memcpy(file->name.data, path->name.data, path->name.len);
-
-        file->log = r->connection->log;
 
         if(u->session_id.len != 0) {
             (void) ngx_sprintf(file->name.data + path->name.len + 1 + path->len,
